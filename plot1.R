@@ -1,20 +1,8 @@
-getwd()
-setwd("C:/Users/asolis/Desktop/Data_training/DataScience/ExploratoryDataAnalysis")
-setwd("./ExDataAnalysis_Project2")
-
 NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
-
-summary(NEI$Emissions)
-names(NEI)
-str(NEI)
-unique(NEI$year)
-
-#Have total emissions from PM2.5 decreased in the United States from 1999 to 2008? Using the base plotting system,
-# make a plot showing the total PM2.5 emission from all sources for each of the years 1999, 2002, 2005, and 2008.
 library(dplyr)
 yearComp <- NEI %>%
-    group_by(year) %>%
+    group_by(Year = year) %>%
     summarise(Values=sum(Emissions))
 plot(yearComp$Year,yearComp$Values,ylab = "PM2.5 totals", xlab = "Years",
      main = "Total emissions PM2.5 in the USA from 1999 to 2008")

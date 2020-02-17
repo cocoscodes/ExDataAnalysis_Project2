@@ -1,6 +1,7 @@
+NEI <- readRDS("summarySCC_PM25.rds")
+SCC <- readRDS("Source_Classification_Code.rds")
 library(dplyr)
-balt <- subset(NEI,NEI$fips=="24510")
-dbalt <- balt %>%
+dbalt <- subset(NEI,NEI$fips=="24510") %>%
     group_by(Year = year) %>%
     summarise(Values=sum(Emissions))
 plot(dbalt$Year,dbalt$Values,ylab = "PM2.5 totals", xlab = "Years",
